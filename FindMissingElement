@@ -1,0 +1,20 @@
+public class FindMissingElement {
+    public static int getMissingElement(int[] numbers, int size) {
+        int expectedSum = size * (size + 1) / 2;
+        int actualSum = 0;
+
+        for (int value : numbers) {
+            actualSum += value;
+        }
+
+        return expectedSum - actualSum;
+    }
+
+    public static void main(String[] args) {
+        int[] inputArray = {1, 2, 3, 5};
+        int totalCount = 5;
+
+        int missingNumber = getMissingElement(inputArray, totalCount);
+        System.out.println("The missing number is: " + missingNumber);
+    }
+}
