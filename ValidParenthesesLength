@@ -1,0 +1,35 @@
+import java.util.Stack;
+
+public class ValidParenthesesLength {
+
+    public static int findLongestValid(String expression) {
+        Stack<Integer> indexStack = new Stack<>();
+        indexStack.push(-1);  
+
+        int maxLen = 0;
+
+        for (int position = 0; position < expression.length(); position++) {
+            char symbol = expression.charAt(position);
+
+            if (symbol == '(') {
+                indexStack.push(position); 
+            } else {
+                indexStack.pop();  
+
+                if (indexStack.isEmpty()) {
+                    indexStack.push(position);  
+                } else {
+                    int validLength = position - indexStack.peek();
+                    maxLen = Math.max(maxLen, validLength);
+                }
+            }
+        }
+
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        String testString = "((()";
+        System.out.println("Max valid parentheses length: " + findLongestValid(testString));  
+    }
+}
